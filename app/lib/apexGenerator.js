@@ -1,3 +1,5 @@
+var eol = require('os').EOL;
+
 /***
  * Converts a JSON string into an Apex class
  *
@@ -6,21 +8,21 @@
  */
 exports.fromJSON = function (json) {
   var obj = JSON.parse(json);
-  var result = 'public class GeneratedApexClass\n{';
+  var result = 'public class GeneratedApexClass' + eol + '{';
 
   for (var p in obj) {
     if (obj.hasOwnProperty(p)) {
       switch (typeof obj[p]) {
         case "string":
-          result += '\n    public String ' + p + ' { get; set; }';
+          result += eol + '    public String ' + p + ' { get; set; }';
           break;
         case "boolean":
-          result += '\n    public Boolean ' + p + ' { get; set; }';
+          result += eol + '    public Boolean ' + p + ' { get; set; }';
           break;
         case "number":
           result += obj[p].toString().indexOf('.') >= 0
-            ? '\n    public Decimal ' + p + ' { get; set; }'
-            : '\n    public Integer ' + p + ' { get; set; }';
+            ? eol + '    public Decimal ' + p + ' { get; set; }'
+            : eol + '    public Integer ' + p + ' { get; set; }';
           break;
         default:
           break;
@@ -28,5 +30,5 @@ exports.fromJSON = function (json) {
     }
   }
 
-  return result + '\n}';
+  return result + eol + '}';
 };
