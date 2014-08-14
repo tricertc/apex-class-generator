@@ -1,3 +1,6 @@
 {
-  "name": "Joe Smith"
+  "name": "Joe Smith",
+  "active": false,
+  "age": 42,
+  "wage": 24.32
 }

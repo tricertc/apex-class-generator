@@ -14,6 +14,14 @@ exports.fromJSON = function (json) {
         case "string":
           result += '\n    public String ' + p + ' { get; set; }';
           break;
+        case "boolean":
+          result += '\n    public Boolean ' + p + ' { get; set; }';
+          break;
+        case "number":
+          result += obj[p].toString().indexOf('.') >= 0
+            ? '\n    public Decimal ' + p + ' { get; set; }'
+            : '\n    public Integer ' + p + ' { get; set; }';
+          break;
         default:
           break;
       }
