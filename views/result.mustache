@@ -12,16 +12,17 @@
 </div>
 <div class="container">
     <div class="row">
+        <!-- <div class="alert alert-danger"><span>{{ message }}</span></div> -->
+    </div>
+    <div class="row">
         <div class="col-xs-1">
-            <strong>JSON</strong>
+            <strong>Apex</strong>
         </div>
         <div class="col-xs-11">
-            <form action="" method="post">
-                <textarea name="string" class="form-control" style="resize: none; height: 300px;"></textarea>
-                <div class="btn-group pull-right" style="margin: 14px 0 20px 0;">
-                    <button type="submit" class="btn btn-primary">Generate</button>
-                </div>
-            </form>
+            <pre>{{ apex }}</pre>
+            <div class="btn-group pull-right">
+                <a class="btn btn-primary" href="/">Back</a>
+            </div>
         </div>
     </div>
 </div>
