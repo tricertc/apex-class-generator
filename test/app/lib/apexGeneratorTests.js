@@ -9,8 +9,8 @@ describe('apexGenerator.js', function () {
 
   describe('#fromJSON()', function () {
     it('should convert a simple JSON to Apex', function () {
-      var json = load('simple.json');
-      var apex = load('simple.apex');
+      var json = load('primitives.json');
+      var apex = load('primitives.apex');
 
       assert.equal(apex, generator.fromJSON(json));
     });

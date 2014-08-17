@@ -27,7 +27,7 @@ describe('ApexClass.js', function () {
 
   describe('#toString()', function () {
     it('should print a simple class', function () {
-      var apex = load('simple.apex');
+      var apex = load('primitives.apex');
 
       var c = new ApexClass();
       c.addProperty(new ApexProperty(ApexProperty.String, 'myString'));
