@@ -1,8 +1,6 @@
 var assert = require('assert');
 var ApexProperty = require('../../../../app/lib/models/ApexProperty');
 
-console.log(ApexProperty.Boolean);
-
 describe('ApexProperty.js', function () {
   it('has static type constants defined', function () {
     assert.equal(true, ApexProperty.Boolean === 'Boolean');
@@ -13,7 +11,7 @@ describe('ApexProperty.js', function () {
 
   describe('#toString()', function () {
     it('should print property for given name and type', function () {
-      var property = new ApexProperty('foo', ApexProperty.Integer);
+      var property = new ApexProperty(ApexProperty.Integer, 'foo');
       assert.equal('public Integer foo { get; set; }', property.toString());
     });
   });
