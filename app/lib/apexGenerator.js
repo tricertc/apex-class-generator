@@ -1,4 +1,5 @@
-var eol = require('os').EOL;
+var ApexClass = require('./models/ApexClass');
+var ApexProperty = require('./models/ApexProperty');
 
 /***
  * Converts a JSON string into an Apex class
@@ -8,21 +9,22 @@ var eol = require('os').EOL;
  */
 exports.fromJSON = function (json) {
   var obj = JSON.parse(json);
-  var result = 'public class GeneratedApexClass' + eol + '{';
+  var apex = new ApexClass();
 
   for (var p in obj) {
     if (obj.hasOwnProperty(p)) {
       switch (typeof obj[p]) {
         case "string":
-          result += eol + '    public String ' + p + ' { get; set; }';
+          apex.addProperty(new ApexProperty(ApexProperty.String, p));
           break;
         case "boolean":
-          result += eol + '    public Boolean ' + p + ' { get; set; }';
+          apex.addProperty(new ApexProperty(ApexProperty.Boolean, p));
           break;
         case "number":
-          result += obj[p].toString().indexOf('.') >= 0
-            ? eol + '    public Decimal ' + p + ' { get; set; }'
-            : eol + '    public Integer ' + p + ' { get; set; }';
+          var type = obj[p].toString().indexOf('.') >= 0
+            ? ApexProperty.Decimal
+            : ApexProperty.Integer;
+          apex.addProperty(new ApexProperty(type, p));
           break;
         default:
           break;
@@ -30,5 +32,5 @@ exports.fromJSON = function (json) {
     }
   }
 
-  return result + eol + '}';
+  return apex.toString();
 };
