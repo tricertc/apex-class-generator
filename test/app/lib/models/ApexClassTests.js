@@ -30,10 +30,10 @@ describe('ApexClass.js', function () {
       var apex = load('simple.apex');
 
       var c = new ApexClass();
-      c.addProperty(new ApexProperty(ApexProperty.String, 'name'));
-      c.addProperty(new ApexProperty(ApexProperty.Boolean, 'active'));
-      c.addProperty(new ApexProperty(ApexProperty.Integer, 'age'));
-      c.addProperty(new ApexProperty(ApexProperty.Decimal, 'wage'));
+      c.addProperty(new ApexProperty(ApexProperty.String, 'myString'));
+      c.addProperty(new ApexProperty(ApexProperty.Boolean, 'myBoolean'));
+      c.addProperty(new ApexProperty(ApexProperty.Integer, 'myInteger'));
+      c.addProperty(new ApexProperty(ApexProperty.Decimal, 'myDecimal'));
 
       assert.equal(apex, c.toString());
     });

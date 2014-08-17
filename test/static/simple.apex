@@ -1,7 +1,7 @@
 public class GeneratedApexClass
 {
-    public String name { get; set; }
-    public Boolean active { get; set; }
-    public Integer age { get; set; }
-    public Decimal wage { get; set; }
+    public String myString { get; set; }
+    public Boolean myBoolean { get; set; }
+    public Integer myInteger { get; set; }
+    public Decimal myDecimal { get; set; }
 }

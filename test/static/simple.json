@@ -1,6 +1,6 @@
 {
-  "name": "Joe Smith",
-  "active": false,
-  "age": 42,
-  "wage": 24.32
+  "myString": "Joe Smith",
+  "myBoolean": false,
+  "myInteger": 42,
+  "myDecimal": 24.32
 }
