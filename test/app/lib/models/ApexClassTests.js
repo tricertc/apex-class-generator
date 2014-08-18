@@ -30,8 +30,16 @@ describe('ApexClass.js', function () {
     });
   });
 
+  describe('#addClass()', function () {
+    it('should add a class to the class list', function () {
+      var c = new ApexClass();
+      c.addClass(new ApexClass());
+      assert.equal(1, c.getClasses().length);
+    });
+  });
+
   describe('#toString()', function () {
-    it('should print a simple class', function () {
+    it('should print a primitives class', function () {
       var apex = load('primitives.apex');
 
       var c = new ApexClass();
@@ -39,6 +47,22 @@ describe('ApexClass.js', function () {
       c.addProperty(new ApexProperty(ApexProperty.Boolean, 'myBoolean'));
       c.addProperty(new ApexProperty(ApexProperty.Integer, 'myInteger'));
       c.addProperty(new ApexProperty(ApexProperty.Decimal, 'myDecimal'));
+
+      assert.equal(apex, c.toString());
+    });
+
+    it('should print a class with a simple object', function () {
+      var apex = load('simple-object.apex');
+
+      var sub = new ApexClass('myObjectClass', true);
+      sub.addProperty(new ApexProperty(ApexProperty.String, 'myString'));
+      sub.addProperty(new ApexProperty(ApexProperty.Boolean, 'myBoolean'));
+      sub.addProperty(new ApexProperty(ApexProperty.Integer, 'myInteger'));
+      sub.addProperty(new ApexProperty(ApexProperty.Decimal, 'myDecimal'));
+
+      var c = new ApexClass();
+      c.addClass(sub);
+      c.addProperty(new ApexProperty('myObjectClass', 'myObject'));
 
       assert.equal(apex, c.toString());
     });

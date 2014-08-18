@@ -1,6 +1,6 @@
 public class GeneratedApexClass
 {
-    public myObject myObjectClass { get; set; }
+    public myObjectClass myObject { get; set; }
 
     public class myObjectClass
     {

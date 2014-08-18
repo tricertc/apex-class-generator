@@ -2,21 +2,31 @@ var eol = require('os').EOL;
 
 /***
  * Apex Class
- * @param name
+ * @param {string} [name]
+ * @param {boolean} [isSubclass]
  * @constructor
  */
 function ApexClass(name, isSubclass) {
   this._name = name || 'GeneratedApexClass';
-  this._properties = [];
   this._isSubclass = !!isSubclass;
+  this._properties = [];
+  this._classes = [];
 }
 
 /***
  * Add an ApexProperty to the class
- * @param {ApexProperty} property
+ * @param {ApexProperty} apexProperty
  */
-ApexClass.prototype.addProperty = function (property) {
-  this._properties.push(property);
+ApexClass.prototype.addProperty = function (apexProperty) {
+  this._properties.push(apexProperty);
+};
+
+/***
+ * Add an ApexClass to the class list
+ * @param {ApexClass} apexClass
+ */
+ApexClass.prototype.addClass = function (apexClass) {
+  this._classes.push(apexClass);
 };
 
 /***
@@ -33,6 +43,14 @@ ApexClass.prototype.getName = function () {
  */
 ApexClass.prototype.getProperties = function () {
   return this._properties;
+};
+
+/***
+ * Getter for classes array
+ * @returns {Array}
+ */
+ApexClass.prototype.getClasses = function () {
+  return this._classes;
 };
 
 /***
