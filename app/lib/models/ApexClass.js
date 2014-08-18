@@ -66,13 +66,21 @@ ApexClass.prototype.getIsSubclass = function () {
  * @returns {string}
  */
 ApexClass.prototype.toString = function () {
-  var apex = 'public class ' + this._name + eol + '{' + eol;
+  var spaces = '    ';
+  var prefix = !this._isSubclass ? '' : spaces;
+
+  var apex = prefix + 'public class ' + this._name + eol;
+  apex += prefix + '{' + eol;
 
   this._properties.forEach(function (p) {
-    apex += '    ' + p.toString() + eol;
+    apex += prefix + spaces + p.toString() + eol;
   });
 
-  return apex + '}';
+  this._classes.forEach(function (c) {
+    apex += eol + c.toString() + eol;
+  });
+
+  return apex + prefix + '}';
 };
 
 module.exports = ApexClass;
