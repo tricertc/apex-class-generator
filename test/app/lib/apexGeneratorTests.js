@@ -14,5 +14,12 @@ describe('apexGenerator.js', function () {
 
       assert.equal(apex, generator.fromJSON(json));
     });
+
+    it('should convert a simple, embedded object to Apex', function () {
+      var json = load('simple-object.json');
+      var apex = load('simple-object.apex');
+
+      assert.equal(apex, generator.fromJSON(json));
+    });
   });
 });

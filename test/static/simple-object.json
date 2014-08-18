@@ -1,0 +1,8 @@
+{
+  "myObject": {
+    "myString": "Joe Smith",
+    "myBoolean": false,
+    "myInteger": 42,
+    "myDecimal": 24.32
+  }
+}

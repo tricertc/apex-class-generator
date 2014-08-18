@@ -6,14 +6,14 @@ var load = require('../../../staticLoader').load;
 describe('ApexClass.js', function () {
   it('should have a default name of GeneratedApexClass', function () {
     var c = new ApexClass();
-    assert.equal('GeneratedApexClass', c.name);
+    assert.equal('GeneratedApexClass', c.getName());
   });
 
   describe('#constructor()', function () {
     it('should accept and set an optional name', function () {
       var name = 'MyClass';
       var c = new ApexClass(name);
-      assert.equal(name, c.name);
+      assert.equal(name, c.getName());
     });
   });
 
@@ -21,7 +21,7 @@ describe('ApexClass.js', function () {
     it('should add a property to the class', function () {
       var c = new ApexClass();
       c.addProperty(new ApexProperty());
-      assert.equal(1, c.properties.length);
+      assert.equal(1, c.getProperties().length);
     });
   });
 

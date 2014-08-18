@@ -5,9 +5,10 @@ var eol = require('os').EOL;
  * @param name
  * @constructor
  */
-function ApexClass(name) {
-  this.name = name || 'GeneratedApexClass';
-  this.properties = [];
+function ApexClass(name, isSubclass) {
+  this._name = name || 'GeneratedApexClass';
+  this._properties = [];
+  this._isSubclass = !!isSubclass;
 }
 
 /***
@@ -15,7 +16,31 @@ function ApexClass(name) {
  * @param {ApexProperty} property
  */
 ApexClass.prototype.addProperty = function (property) {
-  this.properties.push(property);
+  this._properties.push(property);
+};
+
+/***
+ * Getter for name
+ * @returns {*|string}
+ */
+ApexClass.prototype.getName = function () {
+  return this._name;
+};
+
+/***
+ * Getter for properties array
+ * @returns {Array}
+ */
+ApexClass.prototype.getProperties = function () {
+  return this._properties;
+};
+
+/***
+ * Getter for isSubclass flag
+ * @returns {boolean|*}
+ */
+ApexClass.prototype.getIsSubclass = function () {
+  return this._isSubclass;
 };
 
 /***
@@ -23,9 +48,9 @@ ApexClass.prototype.addProperty = function (property) {
  * @returns {string}
  */
 ApexClass.prototype.toString = function () {
-  var apex = 'public class ' + this.name + eol + '{' + eol;
+  var apex = 'public class ' + this._name + eol + '{' + eol;
 
-  this.properties.forEach(function (p) {
+  this._properties.forEach(function (p) {
     apex += '    ' + p.toString() + eol;
   });
 

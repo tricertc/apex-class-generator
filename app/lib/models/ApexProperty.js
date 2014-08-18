@@ -5,8 +5,8 @@
  * @constructor
  */
 function ApexProperty(type, name) {
-  this.name = name;
-  this.type = type;
+  this._name = name;
+  this._type = type;
 }
 
 ApexProperty.Boolean = 'Boolean';
@@ -15,11 +15,27 @@ ApexProperty.Integer = 'Integer';
 ApexProperty.String = 'String';
 
 /***
+ * Getter for name property
+ * @returns {string}
+ */
+ApexProperty.prototype.getName = function () {
+  return this._name;
+};
+
+/***
+ * Getter for type property
+ * @returns {string}
+ */
+ApexProperty.prototype.getType = function () {
+  return this._type;
+};
+
+/***
  * Overridden toString() method
  * @returns {string}
  */
 ApexProperty.prototype.toString = function () {
-  return 'public ' + this.type + ' ' + this.name + ' { get; set; }';
+  return 'public ' + this._type + ' ' + this._name + ' { get; set; }';
 };
 
 module.exports = ApexProperty;
