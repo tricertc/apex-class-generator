@@ -11,26 +11,40 @@ exports.fromJSON = function (json) {
   var obj = JSON.parse(json);
   var apex = new ApexClass();
 
+  buildApex(apex, null, obj);
+
+  return apex;
+};
+
+function buildApex(parent, child, obj) {
+  var updatable = (child || parent);
   for (var p in obj) {
     if (obj.hasOwnProperty(p)) {
       switch (typeof obj[p]) {
-        case "string":
-          apex.addProperty(new ApexProperty(ApexProperty.String, p));
+        case 'string':
+          updatable.addProperty(new ApexProperty(ApexProperty.String, p));
           break;
-        case "boolean":
-          apex.addProperty(new ApexProperty(ApexProperty.Boolean, p));
+        case 'number':
+          if (obj[p].toString().indexOf('.') >= 0) {
+            updatable.addProperty(new ApexProperty(ApexProperty.Decimal, p));
+          }
+          else {
+            updatable.addProperty(new ApexProperty(ApexProperty.Integer, p));
+          }
           break;
-        case "number":
-          var type = obj[p].toString().indexOf('.') >= 0
-            ? ApexProperty.Decimal
-            : ApexProperty.Integer;
-          apex.addProperty(new ApexProperty(type, p));
+        case 'boolean':
+          updatable.addProperty(new ApexProperty(ApexProperty.Boolean, p));
+          break;
+        case 'object':
+          var className = p + 'Class';
+          var subClass = new ApexClass(className, true);
+          buildApex(parent, subClass, obj[p]);
+          parent.addProperty(new ApexProperty(className, p));
+          parent.addClass(subClass);
           break;
         default:
           break;
       }
     }
   }
-
-  return apex;
-};
+}
