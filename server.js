@@ -20,17 +20,16 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
   var json = req.body.string || JSON.stringify({});
   var result = { success: true };
-  var apex;
 
   try {
-    result.apex = generator.fromJSON(json);
+    result.apex = generator.fromJSON(json).toString();
   }
   catch (e) {
     result.success = false;
     result.message = e.toString();
   }
 
-  res.render('result', result.toString());
+  res.render('result', result);
 });
 
 app.listen(port);
