@@ -15,6 +15,11 @@ describe('ApexClass.js', function () {
       var c = new ApexClass(name);
       assert.equal(name, c.getName());
     });
+
+    it('should accept and set an option subclass', function () {
+      var c = new ApexClass('MyClass', true);
+      assert.equal(true, c.getIsSubclass());
+    });
   });
 
   describe('#addProperty()', function () {
