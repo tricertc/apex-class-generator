@@ -30,9 +30,7 @@ app.post('/', function (req, res) {
     result.message = e.toString();
   }
 
-  console.log(result);
-
-  res.render('result', result);
+  res.render('result', result.toString());
 });
 
 app.listen(port);

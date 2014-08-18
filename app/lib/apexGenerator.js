@@ -5,7 +5,7 @@ var ApexProperty = require('./models/ApexProperty');
  * Converts a JSON string into an Apex class
  *
  * @param {string} json
- * @returns {string} generated apex class
+ * @returns {ApexClass} generated apex class
  */
 exports.fromJSON = function (json) {
   var obj = JSON.parse(json);
@@ -32,5 +32,5 @@ exports.fromJSON = function (json) {
     }
   }
 
-  return apex.toString();
+  return apex;
 };
